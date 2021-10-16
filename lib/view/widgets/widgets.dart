@@ -1,0 +1,22 @@
+import 'package:berita_app/helper/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
+
+part 'custom_text.dart';
+part 'appbar_widget.dart';
+part 'badge_widget.dart';
+part 'card_category_widget.dart';
+part 'card_has_error.dart';
+part 'category_berita_card.dart';
+part 'chace_image.dart';
+part 'custom_tabbar_widget.dart';
+part 'header_widget.dart';
+part 'headline_widget.dart';
+part 'news_card.dart';
+part 'shimer_headline_widget.dart';
+part 'shimer_news_card.dart';
+part 'video_card.dart';
+part 'news_card_daerah.dart';
