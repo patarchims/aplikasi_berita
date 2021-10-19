@@ -1,6 +1,4 @@
-import 'package:berita_app/view/pages/pages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+part of 'controller.dart';
 
 class PageViewController extends GetxController {
   Widget _currentScreen = const HomePage();
@@ -17,13 +15,13 @@ class PageViewController extends GetxController {
         _currentScreen = const HomePage();
         break;
       case 1:
-        _currentScreen = const SecondPage();
+        _currentScreen = const CategoryPage();
         break;
       case 2:
-        _currentScreen = const ThreePage();
+        _currentScreen = const VideoPage();
         break;
       case 3:
-        _currentScreen = const FourPage();
+        _currentScreen = const RedaksiPage();
         break;
     }
     update();

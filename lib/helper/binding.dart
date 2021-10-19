@@ -1,5 +1,4 @@
-import 'package:berita_app/controller/network_controller.dart';
-import 'package:berita_app/controller/page_view_controller.dart';
+import 'package:berita_app/controller/controller.dart';
 import 'package:get/get.dart';
 
 class Binding extends Bindings {
@@ -8,5 +7,6 @@ class Binding extends Bindings {
     // NOTE : CONTROLLER HERE
     Get.lazyPut(() => PageViewController());
     Get.lazyPut(() => NetworkController());
+    // Get.lazyPut(() => HomeController());
   }
 }

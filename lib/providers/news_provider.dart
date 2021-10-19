@@ -1,0 +1,82 @@
+part of 'providers.dart';
+
+class NewsProvider extends ChangeNotifier {
+  // final ApiClient _client = ApiClient();
+  getBerita(String value) async {
+    var result = await http.get(Uri.parse(ApiDb.berita + value));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      List<BeritaModel> beritaModel = (data['data'] as Iterable)
+          .map((e) => BeritaModel.fromJson(e))
+          .toList();
+      return beritaModel;
+    } else {
+      return <BeritaModel>[];
+    }
+  }
+
+  getKategoriBerita() async {
+    var result = await http.get(Uri.parse(ApiDb.kategori));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      List<KategoriModel> beritaModel = (data['data'] as Iterable)
+          .map((e) => KategoriModel.fromJson(e))
+          .toList();
+      return beritaModel;
+    } else {
+      return <KategoriModel>[];
+    }
+  }
+
+  getBeritaById(
+      {int? valueId, required int currentPage, int totaldata = 5}) async {
+    var result = await http.get(Uri.parse(ApiDb.kategori + valueId.toString()));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      List<BeritaModel> beritaModel = (data['data'] as Iterable)
+          .map((e) => BeritaModel.fromJson(e))
+          .toList();
+      return beritaModel;
+    } else {
+      return <BeritaModel>[];
+    }
+  }
+
+  getBeritaTerkait(int valueId) async {
+    var result = await http.get(Uri.parse(ApiDb.terkait + valueId.toString()));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      List<BeritaModel> beritaModel = (data['data'] as Iterable)
+          .map((e) => BeritaModel.fromJson(e))
+          .toList();
+      return beritaModel;
+    } else {
+      return <BeritaModel>[];
+    }
+  }
+
+  getRedaksi() async {
+    var result = await http.get(Uri.parse(ApiDb.redaksi));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      RedaksiModel beritaModel = RedaksiModel.fromJson(data);
+      return beritaModel;
+    } else {
+      return <RedaksiModel>[];
+    }
+  }
+
+  getVideo({int page = 1, int amount = 5}) async {
+    var result = await http.get(Uri.parse(
+        ApiDb.videoLink + "/${page.toString()}/${amount.toString()}"));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      List<VideoModel> videoModel = (data['data'] as Iterable)
+          .map((e) => VideoModel.fromJson(e))
+          .toList();
+      return videoModel;
+    } else {
+      return <VideoModel>[];
+    }
+  }
+}

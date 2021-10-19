@@ -1,5 +1,4 @@
-import 'package:berita_app/controller/network_controller.dart';
-import 'package:berita_app/controller/page_view_controller.dart';
+import 'package:berita_app/controller/controller.dart';
 import 'package:berita_app/helper/theme.dart';
 import 'package:berita_app/view/pages/pages.dart';
 import 'package:flutter/material.dart';
@@ -75,30 +74,3 @@ class CustomBottomNavigationBar extends StatelessWidget {
     );
   }
 }
-
-// class NoInternetConnection extends StatelessWidget {
-//   const NoInternetConnection({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             const CircularProgressIndicator(),
-            
-//             SizedBox(
-//               height: 30.h,
-//             ),
-//             const CustomText(
-//               text: 'Silakan periksa koneksi internet Anda...',
-//               fontSize: 14,
-//               alignment: Alignment.center,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

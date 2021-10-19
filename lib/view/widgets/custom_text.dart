@@ -4,7 +4,7 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final FontWeight fontWeight;
-  final Color color;
+  final Color? color;
   final Alignment alignment;
   final int? maxLines;
   final double? height;
@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
     this.text = '',
     this.fontSize = 16,
     this.fontWeight = FontWeight.normal,
-    this.color = Colors.black,
+    this.color,
     this.alignment = Alignment.topLeft,
     this.maxLines,
     this.height,
@@ -28,7 +28,7 @@ class CustomText extends StatelessWidget {
         text,
         style: GoogleFonts.poppins(
           fontWeight: FontWeight.w500,
-          color: color,
+          color: (color != null) ? color : Colors.black,
           fontSize: fontSize.sp,
           height: height,
         ),
