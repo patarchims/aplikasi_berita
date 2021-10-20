@@ -10,19 +10,32 @@ class ByCategoryPage extends StatefulWidget {
 
 class _ByCategoryPageState extends State<ByCategoryPage> {
   ScrollController scrollController = ScrollController();
-  bool isLoading = false;
+  bool isLoading = false, allLoaded = false;
   bool isVisible = false;
-  // late List<BeritaModel> beritaModel;
+  late List<BeritaModel> dataBerita;
+  int page = 1;
 
   @override
   void initState() {
     super.initState();
-    scrollController = ScrollController();
     isVisible = true;
+  }
+
+  mockFecth() async {
+    if (allLoaded) {
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    // callMoreData
   }
 
   @override
   void dispose() {
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -30,43 +43,29 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
   Widget build(BuildContext context) {
     var newsProvider = Provider.of<NewsProvider>(context);
 
+    void callMoreData() {
+      newsProvider
+          .getBeritaById(
+              valueId: widget.idKategori!.toInt(),
+              page: BeritaModel.currentPage!.toInt() + 1.toInt())
+          .then((val) {
+        setState(() {
+          // print(int.parse(BeritaModel.currentPage.toString()) + 1);
+          dataBerita.addAll(val);
+          // dataBerita.a
+        });
+      });
+    }
+
     bool onNotification(ScrollNotification notification) {
-      if (notification is ScrollNotification) {
+      if (notification is ScrollUpdateNotification) {
         if (scrollController.position.maxScrollExtent >
                 scrollController.offset &&
             scrollController.position.maxScrollExtent -
                     scrollController.offset <=
                 50) {
-          // scrollController.addListener(() {
-          //   if (scrollController.position.atEdge) {
-          //     if (isVisible) {
-          //       setState(() {
-          //         isVisible = false;
-          //       });
-          //     }
-          //   } else {
-          //     if (isVisible) {
-          //       setState(() {
-          //         isVisible = true;
-          //       });
-          //     }
-          //   }
-          // });
-          setState(() {
-            if (scrollController.position.atEdge) {
-              if (isVisible) {
-                setState(() {
-                  isVisible = false;
-                });
-              }
-            } else {
-              if (isVisible) {
-                setState(() {
-                  isVisible = true;
-                });
-              }
-            }
-          });
+          // print("OnScroling");
+
         }
       }
       return true;
@@ -76,11 +75,10 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
         backgroundColor: softBlue,
         body: FutureBuilder(
             future: newsProvider.getBeritaById(
-                valueId: widget.idKategori!.toInt(), currentPage: 1.toInt()),
+                valueId: widget.idKategori!.toInt(), page: 1),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data != null) {
-                List<BeritaModel> dataBerita = snapshot.data;
-
+                dataBerita = snapshot.data;
                 int index = 0;
                 return NotificationListener(
                   onNotification: onNotification,
@@ -148,39 +146,39 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
                       // const SizedBox(
                       //   height: 48,
                       // ),
-                      Visibility(
-                        visible: isVisible,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            color: Colors.transparent,
-                            width: MediaQuery.of(context).size.width / 3.5,
-                            height: 40,
-                            child: ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  primary: blueColor, // background
-                                  onPrimary: Colors.white, // foreground
-                                ),
-                                label: Text(
-                                  isLoading ? 'Loading...' : 'See More',
-                                  style: const TextStyle(fontSize: 14),
-                                ),
-                                icon: isLoading
-                                    ? const CircularProgressIndicator()
-                                    : const Icon(
-                                        Icons.panorama_fish_eye_rounded,
-                                        size: 14,
-                                      ),
-                                onPressed: () {
-                                  if (isLoading == false) {
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-                                  }
-                                }),
-                          ),
-                        ),
-                      ),
+                      // Visibility(
+                      //   visible: isVisible,
+                      //   child: Align(
+                      //     alignment: Alignment.bottomCenter,
+                      //     child: Container(
+                      //       color: Colors.transparent,
+                      //       width: MediaQuery.of(context).size.width / 3.5,
+                      //       height: 40,
+                      //       child: ElevatedButton.icon(
+                      //           style: ElevatedButton.styleFrom(
+                      //             primary: blueColor, // background
+                      //             onPrimary: Colors.white, // foreground
+                      //           ),
+                      //           label: Text(
+                      //             isLoading ? 'Loading...' : 'See More',
+                      //             style: const TextStyle(fontSize: 14),
+                      //           ),
+                      //           icon: isLoading
+                      //               ? const CircularProgressIndicator()
+                      //               : const Icon(
+                      //                   Icons.panorama_fish_eye_rounded,
+                      //                   size: 14,
+                      //                 ),
+                      //           onPressed: () {
+                      //             if (isLoading == false) {
+                      //               setState(() {
+                      //                 isLoading = true;
+                      //               });
+                      //             }
+                      //           }),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 );

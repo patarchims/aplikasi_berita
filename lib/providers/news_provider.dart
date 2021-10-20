@@ -6,6 +6,7 @@ class NewsProvider extends ChangeNotifier {
     var result = await http.get(Uri.parse(ApiDb.berita + value));
     if (result.statusCode == 200) {
       var data = jsonDecode(result.body);
+      BeritaModel.currentPage = data['halaman'];
       List<BeritaModel> beritaModel = (data['data'] as Iterable)
           .map((e) => BeritaModel.fromJson(e))
           .toList();
@@ -28,11 +29,12 @@ class NewsProvider extends ChangeNotifier {
     }
   }
 
-  getBeritaById(
-      {int? valueId, required int currentPage, int totaldata = 5}) async {
-    var result = await http.get(Uri.parse(ApiDb.kategori + valueId.toString()));
+  getBeritaById({int? valueId, int page = 1}) async {
+    var result = await http.get(
+        Uri.parse(ApiDb.kategori + valueId.toString() + "/${page.toString()}"));
     if (result.statusCode == 200) {
       var data = jsonDecode(result.body);
+      BeritaModel.currentPage = data['halaman'];
       List<BeritaModel> beritaModel = (data['data'] as Iterable)
           .map((e) => BeritaModel.fromJson(e))
           .toList();

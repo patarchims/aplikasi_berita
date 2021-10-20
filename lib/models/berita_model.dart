@@ -1,6 +1,7 @@
 part of 'models.dart';
 
 class BeritaModel {
+  static int? currentPage;
   int? id;
   int? idKategori;
   String? judul;

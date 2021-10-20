@@ -26,7 +26,7 @@ class _CategoryPageWithAppBarState extends State<CategoryPageWithAppBar> {
       widget: FutureBuilder(
           future: (widget.idKategori != null)
               ? newsProvider.getBeritaById(
-                  valueId: widget.idKategori!.toInt(), currentPage: 1.toInt())
+                  valueId: widget.idKategori!.toInt(), page: 1.toInt())
               : newsProvider.getBerita(widget.categoryTerkini.toString()),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data != null) {
