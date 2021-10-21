@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
           child: GetMaterialApp(
             initialBinding: Binding(),
             theme: ThemeData(primarySwatch: ColorPalette.materialWhiteColor),
+            // initialRoute: ,
             home: const ControlView(),
             debugShowCheckedModeBanner: false,
             title: 'Berita Gampong',

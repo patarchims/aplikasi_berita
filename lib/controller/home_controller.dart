@@ -4,8 +4,6 @@ class HomeController extends GetxController {
   List<BeritaModel> getBerita = [];
   List<KategoriModel> getKategori = [];
 
-  // var getBerita = <BeritaModel>[].obs;
-  // var getKategori = <KategoriModel>[].obs;
 
   List<BeritaModel> get headline => getBerita.obs;
 
