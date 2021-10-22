@@ -6,5 +6,7 @@ class AppPages {
         name: RouteNames.home,
         // binding: Binding(),
         page: () => const HomePage()),
+    GetPage(
+        name: RouteNames.categoryPageAppBar,   page: () => const DetailPage()),
   ];
 }

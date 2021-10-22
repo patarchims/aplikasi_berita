@@ -36,14 +36,15 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                             items: data.map((e) {
                               return HeadLineWidget(
                                 categoryOnTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryPageWithAppBar(
-                                                idKategori:
-                                                    e.idKategori!.toInt(),
-                                              )));
+                                  // Get.to(())
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             CategoryPageWithAppBar(
+                                  //               idKategori:
+                                  //                   e.idKategori!.toInt(),
+                                  //             )));
                                 },
                                 onTap: () {
                                   Navigator.push(
@@ -138,14 +139,15 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                       InkWell(
                         onTap: () {
                           // Note : Fungsi ontap Lihat Semua Berita
+                          // Get.to(()=>CategoryPageWithAppBar(idKategori:"terkini" ));
                           // GOTO CATEGORY PAGE BERITA TERKINI
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CategoryPageWithAppBar(
-                                        categoryTerkini: "terkini",
-                                      )));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             const CategoryPageWithAppBar(
+                          //               categoryTerkini: "terkini",
+                          //             )));
                         },
                         child: Text(
                           "LIHAT SEMUA",
@@ -156,52 +158,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   ),
 
                   // Note : BERITA TERKINI :
-                  FutureBuilder(
-                      future: newsProvider.getBerita('terkini'),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.data != null) {
-                          List<BeritaModel> data = snapshot.data;
-                          return Column(
-                            children: data.map((e) {
-                              return NewsCard(
-                                categoryOnTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryPageWithAppBar(
-                                                idKategori:
-                                                    e.idKategori!.toInt(),
-                                              )));
-                                },
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailPage(
-                                                beritaModel: e,
-                                              )));
-                                },
-                                category: e.kategori,
-                                date: e.tanggal.toString(),
-                                imageUrl: e.gambar.toString(),
-                                title: e.judul,
-                              );
-                            }).toList(),
-                          );
-                        } else if (snapshot.hasError) {
-                          return Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 24),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Center(
-                                    child: Text("Date Error",
-                                        style: dangerTextStyle),
-                                  )));
-                        }
-                        return shimerCard(context);
-                      }),
+                  listCategory(newsProvider, 'terkini'),
                 ],
               ),
             ),
@@ -227,6 +184,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   ),
 
                   // Note : BERITA DAERAH :
+
                   FutureBuilder(
                       future: newsProvider.getBerita('1'),
                       builder: (context, AsyncSnapshot snapshot) {
@@ -313,43 +271,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   ),
 
                   // Note : BERITA GAMPONG :
-                  FutureBuilder(
-                      future: newsProvider.getBerita('2'),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.data != null) {
-                          List<BeritaModel> data = snapshot.data;
-                          return Column(
-                            children: data.map((e) {
-                              return NewsCard(
-                                categoryOnTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryPageWithAppBar(
-                                                idKategori:
-                                                    e.idKategori!.toInt(),
-                                              )));
-                                },
-                                onTap: () {
-                                  // NOTE : GO TO DETAIL PAGE
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailPage(
-                                                beritaModel: e,
-                                              )));
-                                },
-                                category: e.kategori,
-                                date: e.tanggal.toString(),
-                                imageUrl: e.gambar.toString(),
-                                title: e.judul,
-                              );
-                            }).toList(),
-                          );
-                        }
-                        return shimerCard(context);
-                      }),
+                  listCategory(newsProvider, '2'),
                 ],
               ),
             ),
@@ -373,53 +295,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   ),
 
                   // Note : BERITA NASIONAL :
-                  FutureBuilder(
-                      future: newsProvider.getBerita('3'),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.data != null) {
-                          List<BeritaModel> data = snapshot.data;
-                          return Column(
-                            children: data.map((e) {
-                              return NewsCard(
-                                // NOTE: GOTO DETIAL PAGE
-                                categoryOnTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryPageWithAppBar(
-                                                idKategori:
-                                                    e.idKategori!.toInt(),
-                                              )));
-                                },
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailPage(
-                                                beritaModel: e,
-                                              )));
-                                },
-                                category: e.kategori,
-                                date: e.tanggal.toString(),
-                                imageUrl: e.gambar.toString(),
-                                title: e.judul,
-                              );
-                            }).toList(),
-                          );
-                        } else if (snapshot.hasError) {
-                          return Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 24),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Center(
-                                    child: Text("Date Error",
-                                        style: dangerTextStyle),
-                                  )));
-                        }
-                        return shimerCard(context);
-                      }),
+                  listCategory(newsProvider, '3'),
                 ],
               ),
             ),
@@ -430,6 +306,47 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
         ),
       ),
     );
+  }
+
+  FutureBuilder<dynamic> listCategory(
+      NewsProvider newsProvider, String idBerita) {
+    return FutureBuilder(
+        future: newsProvider.getBerita(idBerita.toString()),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.data != null) {
+            List<BeritaModel> data = snapshot.data;
+            return Column(
+              children: data.map((e) {
+                return NewsCard(
+                  categoryOnTap: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             CategoryPageWithAppBar(
+                    //               idKategori:
+                    //                   e.idKategori!.toInt(),
+                    //             )));
+                  },
+                  onTap: () {
+                    // NOTE : GO TO DETAIL PAGE
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                                  beritaModel: e,
+                                )));
+                  },
+                  category: e.kategori,
+                  date: e.tanggal.toString(),
+                  imageUrl: e.gambar.toString(),
+                  title: e.judul,
+                );
+              }).toList(),
+            );
+          }
+          return shimerCard(context);
+        });
   }
 
   Container shimerCard(BuildContext context) {

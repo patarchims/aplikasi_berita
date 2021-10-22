@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:berita_app/api/api_db.dart';
 import 'package:berita_app/helper/theme.dart';
 import 'package:berita_app/models/models.dart';
 import 'package:berita_app/providers/providers.dart';
+import 'package:berita_app/routes/routes.dart';
+import 'package:berita_app/services/services.dart';
 import 'package:berita_app/view/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +23,9 @@ part 'three_page.dart';
 part 'four_page.dart';
 part 'nointernet_connection_page.dart';
 part 'berita_terkini_page.dart';
-// part 'by_category_page_old.dart';
-part 'category_page_with_appbar.dart';
 part 'redaksi_page.dart';
 part 'video_page.dart';
 part 'detail_page.dart';
 part 'category_page.dart';
 part 'by_category_page.dart';
+part 'category_page_with_appbar.dart';

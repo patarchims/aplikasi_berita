@@ -17,7 +17,7 @@ class ChaceImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      // key: ValueKey(key),
+      key: ValueKey(key),
       imageUrl: imageUrl.toString(),
       fit: BoxFit.cover,
       height: height,

@@ -48,13 +48,14 @@ class _CategoryPageState extends State<CategoryPage> {
                             (index) => InkWell(
                               onTap: () {
                                 // NOTE : FUNGSI ONTAP
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CategoryPageWithAppBar(
-                                              idKategori: data[index].id,
-                                            )));
+                                Get.to(RouteNames.detailPage);
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             CategoryPageWithAppBar(
+                                //               idKategori: data[index].id,
+                                //             )));
                               },
                               child: Stack(
                                 children: [

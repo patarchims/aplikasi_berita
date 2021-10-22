@@ -7,6 +7,6 @@ class Binding extends Bindings {
     // NOTE : CONTROLLER HERE
     Get.lazyPut(() => PageViewController());
     Get.lazyPut(() => NetworkController());
-    // Get.lazyPut(() => HomeController());
+    
   }
 }

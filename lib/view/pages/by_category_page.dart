@@ -1,8 +1,8 @@
 part of 'pages.dart';
 
 class ByCategoryPage extends StatefulWidget {
-  final int? idKategori;
-  const ByCategoryPage({Key? key, this.idKategori}) : super(key: key);
+  final int idKategori;
+  const ByCategoryPage({Key? key, required this.idKategori}) : super(key: key);
 
   @override
   State<ByCategoryPage> createState() => _ByCategoryPageState();
@@ -10,107 +10,134 @@ class ByCategoryPage extends StatefulWidget {
 
 class _ByCategoryPageState extends State<ByCategoryPage> {
   ScrollController scrollController = ScrollController();
-  // bool isLoading = false, allLoaded = false;
-  // bool isVisible = false;
-  List<BeritaModel> dataBerita = [];
   int page = 1;
+  List<BeritaModel> beritaModel = [];
+  bool loading = false, alloaded = false;
+
+  void getData() {
+    if (alloaded) {
+      return;
+    }
+
+    setState(() {
+      loading = true;
+    });
+
+    BeritaServices.getBeritaByCategory(valueId: widget.idKategori, page: page)
+        .then((value) {
+      setState(() {
+        page = page + 1;
+        beritaModel.addAll(value);
+        loading = false;
+        alloaded = beritaModel.isEmpty;
+      });
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    if (_isBottom) {
-      final newsProvider = Provider.of<NewsProvider>(context, listen: false);
-      newsProvider
-          .getBeritaById(
-              valueId: widget.idKategori!.toInt(), page: page + 1.toInt())
-          .then((val) {
-        page = BeritaModel.currentPage!.toInt();
-        setState(() {
-          dataBerita.addAll(val);
-        });
-      });
-    }
+    getData();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent &&
+          !loading) {
+        getData();
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // var newsProvider = Provider.of<NewsProvider>(context);
-    // newsProvider.getBeritaById(valueId: widget.idKategori!.toInt(), page: page);
-
     return Scaffold(
-        backgroundColor: softBlue,
-        body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return (index == 0)
-                ? Container(
-                    margin: const EdgeInsets.all(8),
-                    child: HeadLineWidget(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailPage(
-                                      beritaModel: dataBerita[index],
-                                    )));
-                      },
-                      imageURL: dataBerita[index].gambar.toString(),
-                      badgeColor: Colors.amber,
-                      category: dataBerita[index].kategori,
-                      dateTime: dataBerita[index].tanggal.toString(),
-                      title: dataBerita[index].judul,
-                    ),
-                  )
-                : Container(
-                    color: whiteColor,
-                    padding: EdgeInsets.only(
-                        left: 6,
-                        right: 6,
-                        bottom:
-                            (dataBerita.last == dataBerita[index]) ? 50 : 0),
-                    child: NewsCard(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailPage(
-                                      beritaModel: dataBerita[index],
-                                    )));
-                      },
-                      categoryOnTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CategoryPageWithAppBar(
-                                      idKategori:
-                                          dataBerita[index].idKategori!.toInt(),
-                                    )));
-                      },
-                      category: dataBerita[index].kategori,
-                      date: dataBerita[index].tanggal.toString(),
-                      imageUrl: dataBerita[index].gambar.toString(),
-                      title: dataBerita[index].judul,
-                    ),
-                  );
-          },
-          controller: scrollController,
-          itemCount: dataBerita.length,
-        ));
-  }
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (beritaModel.isNotEmpty) {
+            return Stack(
+              children: [
+                ListView.separated(
+                    controller: scrollController,
+                    itemBuilder: (context, index) {
+                      if (index == 0) {
+                        return Container(
+                          margin: const EdgeInsets.all(8),
+                          child: HeadLineWidget(
+                            onTap: () {
+                              Get.to(() => DetailPage(
+                                    beritaModel: beritaModel[index],
+                                  ));
+                            },
+                            imageURL: beritaModel[index].gambar.toString(),
+                            badgeColor: Colors.amber,
+                            category: beritaModel[index].kategori,
+                            dateTime: beritaModel[index].tanggal.toString(),
+                            title: beritaModel[index].judul,
+                          ),
+                        );
+                      } else if (index < beritaModel.length) {
+                        return Container(
+                          color: whiteColor,
+                          padding: EdgeInsets.only(
+                              left: 6,
+                              right: 6,
+                              bottom: (beritaModel.last == beritaModel[index])
+                                  ? 50
+                                  : 0),
+                          child: NewsCard(
+                            onTap: () {
+                              Get.to(() =>
+                                  DetailPage(beritaModel: beritaModel[index]));
+                            },
+                            categoryOnTap: () {},
+                            category: beritaModel[index].kategori,
+                            date: beritaModel[index].tanggal.toString(),
+                            imageUrl: beritaModel[index].gambar.toString(),
+                            title: beritaModel[index].judul,
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          color: Colors.red,
+                          width: constraints.maxWidth,
+                          height: 100,
+                          child: Text(
+                            "Nothing more to load",
+                            style: blackTextStyle,
+                          ),
+                        );
+                      }
 
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  bool get _isBottom {
-    if (!scrollController.hasClients) return false;
-    final maxScroll = scrollController.position.maxScrollExtent;
-    final currentScroll = scrollController.offset;
-    return currentScroll >= (maxScroll * 0.9);
+                      //  (index <= beritaModel.length)
+                    },
+                    separatorBuilder: (context, index) {
+                      return Container();
+                    },
+                    itemCount: beritaModel.length),
+                if (loading) ...[
+                  Positioned(
+                      left: 0,
+                      bottom: 0,
+                      child: SizedBox(
+                        width: constraints.maxWidth,
+                        child: Center(
+                            child: CircularProgressIndicator(
+                          color: blueColor,
+                        )),
+                      ))
+                ]
+              ],
+            );
+          } else {
+            return SizedBox(
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: blueColor,
+                ),
+              ),
+            );
+          }
+        },
+      ),
+    );
   }
 }

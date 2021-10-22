@@ -2,10 +2,10 @@ part of 'pages.dart';
 
 class DetailPage extends StatefulWidget {
   // final Function? categoryOnTap;
-  final BeritaModel beritaModel;
+  final BeritaModel? beritaModel;
   const DetailPage({
     Key? key,
-    required this.beritaModel,
+    this.beritaModel,
   }) : super(key: key);
 
   @override
@@ -25,14 +25,14 @@ class _DetailPageState extends State<DetailPage> {
       isButtonShare: true,
       buttonShare: () {
         // Fungsi Share
-        Share.share(ApiDb.shareLink + widget.beritaModel.seo.toString());
+        Share.share(ApiDb.shareLink + widget.beritaModel!.seo.toString());
       },
       widget: InteractiveViewer(
         child: ListView(
           children: [
             // DETAIL PAGE
             ChaceImage(
-              imageUrl: widget.beritaModel.gambar.toString(),
+              imageUrl: widget.beritaModel!.gambar.toString(),
               height: 215,
               width: double.infinity,
             ),
@@ -41,8 +41,8 @@ class _DetailPageState extends State<DetailPage> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: (widget.beritaModel.subJudul != null)
-                  ? Text(widget.beritaModel.subJudul.toString(),
+              child: (widget.beritaModel!.subJudul != null)
+                  ? Text(widget.beritaModel!.subJudul.toString(),
                       style: greyTextStyle.copyWith(fontSize: 8))
                   : Text("", style: greyTextStyle.copyWith(fontSize: 8)),
             ),
@@ -51,8 +51,8 @@ class _DetailPageState extends State<DetailPage> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: (widget.beritaModel.judul != null)
-                  ? Text(widget.beritaModel.judul.toString(),
+              child: (widget.beritaModel!.judul != null)
+                  ? Text(widget.beritaModel!.judul.toString(),
                       style: blackTextStyle.copyWith(
                           fontSize: 21, fontWeight: FontWeight.bold))
                   : Text("", style: greyTextStyle.copyWith(fontSize: 8)),
@@ -64,17 +64,17 @@ class _DetailPageState extends State<DetailPage> {
               margin: const EdgeInsets.symmetric(horizontal: 8),
               child: BadgetWidget(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CategoryPageWithAppBar(
-                                idKategori:
-                                    widget.beritaModel.idKategori!.toInt(),
-                              )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => CategoryPageWithAppBar(
+                  //               idKategori:
+                  //                   widget.beritaModel.idKategori!.toInt(),
+                  //             )));
                 },
                 badgeColor: Colors.amber,
-                category: widget.beritaModel.kategori,
-                tanggal: widget.beritaModel.tanggal.toString(),
+                category: widget.beritaModel!.kategori,
+                tanggal: widget.beritaModel!.tanggal.toString(),
                 textColor: Colors.black,
               ),
             ),
@@ -85,7 +85,7 @@ class _DetailPageState extends State<DetailPage> {
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 child: Html(
-                  data: widget.beritaModel.isi.toString(),
+                  data: widget.beritaModel!.isi.toString(),
                   style: {
                     "body": Style(
                       fontSize: const FontSize(19.0),
@@ -121,7 +121,7 @@ class _DetailPageState extends State<DetailPage> {
                   // Note : BERITA TERKAIT :
                   FutureBuilder(
                       future: newsProvider
-                          .getBeritaTerkait(widget.beritaModel.id!.toInt()),
+                          .getBeritaTerkait(widget.beritaModel!.id!.toInt()),
                       builder: (context, AsyncSnapshot snapshot) {
                         if (snapshot.data != null) {
                           List<BeritaModel> data = snapshot.data;

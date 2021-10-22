@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
 
-            // NOTE : Get Kategori
+            // NOTE : Get KATEGORI BERITA
             Container(
               width: double.infinity,
               color: Colors.white,
@@ -159,14 +159,12 @@ class _HomePageState extends State<HomePage> {
       body: FutureBuilder(
           future: newsProvider.getKategoriBerita(),
           builder: (context, AsyncSnapshot snapshot) {
-            // if (snapshot.connectionState == ConnectionState.waiting) {}
             if (snapshot.data != null) {
               List<KategoriModel> data = snapshot.data;
               return PageView(
                 controller: pageController,
                 onPageChanged: (index) {
                   setState(() {
-                    // Note : Set to Index
                     selectedIndex = index;
                   });
                 },

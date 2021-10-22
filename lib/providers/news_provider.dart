@@ -29,11 +29,12 @@ class NewsProvider extends ChangeNotifier {
     }
   }
 
-  getBeritaById({int? valueId, int page = 1}) async {
+  static getBeritaById({int? valueId, int page = 1}) async {
     var result = await http.get(
         Uri.parse(ApiDb.kategori + valueId.toString() + "/${page.toString()}"));
     if (result.statusCode == 200) {
       var data = jsonDecode(result.body);
+      print("Get Data");
       BeritaModel.currentPage = data['halaman'];
       List<BeritaModel> beritaModel = (data['data'] as Iterable)
           .map((e) => BeritaModel.fromJson(e))

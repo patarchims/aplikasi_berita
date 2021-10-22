@@ -49,10 +49,10 @@ class BadgetWidget extends StatelessWidget {
           tanggal.toString(),
           style: whiteTextStyle.copyWith(
               color: textColor ?? whiteColor,
-              fontSize: 12,
+              fontSize: 9,
               fontWeight: FontWeight.bold),
           textAlign: TextAlign.left,
-          maxLines: 1,
+          maxLines: 2,
           overflow: TextOverflow.clip,
         ),
       ],
