@@ -26,15 +26,33 @@ class _CategoryPageWithAppBarState extends State<CategoryPageWithAppBar> {
       loading = true;
     });
 
-    BeritaServices.getBeritaByCategory(valueId: widget.idKategori, page: page)
-        .then((value) {
-      setState(() {
-        page = page + 1;
-        beritaModel.addAll(value);
-        loading = false;
-        alloaded = beritaModel.isEmpty;
+    if (widget.idKategori != null) {
+      BeritaServices.getBeritaByCategory(valueId: widget.idKategori, page: page)
+          .then((value) {
+        setState(() {
+          page = page + 1;
+          beritaModel.addAll(value);
+          loading = false;
+          alloaded = beritaModel.isEmpty;
+        });
       });
-    });
+    } else {
+      // newsProvider.getBerita(widget.categoryTerkini.toString())
+      BeritaServices.getBerita(value: 'terkini', page: page).then((value) {
+        setState(() {
+          page = page + 1;
+          beritaModel.addAll(value);
+          loading = false;
+          alloaded = beritaModel.isEmpty;
+        });
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
@@ -135,12 +153,21 @@ class _CategoryPageWithAppBarState extends State<CategoryPageWithAppBar> {
               ],
             );
           } else {
-            return SizedBox(
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: blueColor,
-                ),
-              ),
+            return Container(
+              height: 86 * 5 + 24 + 250,
+              color: whiteColor,
+              width: MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    if ([index].first == 0) {
+                      return const ShimerHeadlineWidget();
+                    } else {
+                      return Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          child: const ShimerNewsCard());
+                    }
+                  }),
             );
           }
         },

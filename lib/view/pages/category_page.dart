@@ -38,9 +38,6 @@ class _CategoryPageState extends State<CategoryPage> {
                       if (snapshot.data != null) {
                         List<KategoriModel> data = snapshot.data;
                         return GridView.count(
-                          // primary: false,
-                          // padding: const EdgeInsets.only(left: 10),
-                          // crossAxisSpacing: 10.0,
                           crossAxisCount: 2,
                           // mainAxisSpacing: 5,
                           children: List.generate(
@@ -48,14 +45,9 @@ class _CategoryPageState extends State<CategoryPage> {
                             (index) => InkWell(
                               onTap: () {
                                 // NOTE : FUNGSI ONTAP
-                                Get.to(RouteNames.detailPage);
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             CategoryPageWithAppBar(
-                                //               idKategori: data[index].id,
-                                //             )));
+                                Get.to(() => CategoryPageWithAppBar(
+                                      idKategori: data[index].id,
+                                    ));
                               },
                               child: Stack(
                                 children: [

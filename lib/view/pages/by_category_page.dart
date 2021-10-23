@@ -48,6 +48,12 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
@@ -128,12 +134,21 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
               ],
             );
           } else {
-            return SizedBox(
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: blueColor,
-                ),
-              ),
+            return Container(
+              height: 86 * 5 + 24 + 250,
+              color: whiteColor,
+              width: MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    if ([index].first == 0) {
+                      return const ShimerHeadlineWidget();
+                    } else {
+                      return Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          child: const ShimerNewsCard());
+                    }
+                  }),
             );
           }
         },

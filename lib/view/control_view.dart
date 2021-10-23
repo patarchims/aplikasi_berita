@@ -57,7 +57,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Video',
+              label: 'Category',
               icon: FaIcon(FontAwesomeIcons.list),
             ),
             BottomNavigationBarItem(

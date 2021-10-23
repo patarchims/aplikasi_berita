@@ -64,13 +64,9 @@ class _DetailPageState extends State<DetailPage> {
               margin: const EdgeInsets.symmetric(horizontal: 8),
               child: BadgetWidget(
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => CategoryPageWithAppBar(
-                  //               idKategori:
-                  //                   widget.beritaModel.idKategori!.toInt(),
-                  //             )));
+                  Get.to(() => CategoryPageWithAppBar(
+                      idKategori: //               idKategori:
+                          widget.beritaModel!.idKategori!.toInt()));
                 },
                 badgeColor: Colors.amber,
                 category: widget.beritaModel!.kategori,

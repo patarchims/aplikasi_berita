@@ -36,15 +36,8 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                             items: data.map((e) {
                               return HeadLineWidget(
                                 categoryOnTap: () {
-                                  // Get.to(())
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) =>
-                                  //             CategoryPageWithAppBar(
-                                  //               idKategori:
-                                  //                   e.idKategori!.toInt(),
-                                  //             )));
+                                  Get.to(() => CategoryPageWithAppBar(
+                                      idKategori: e.idKategori!.toInt()));
                                 },
                                 onTap: () {
                                   Navigator.push(
@@ -139,15 +132,8 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                       InkWell(
                         onTap: () {
                           // Note : Fungsi ontap Lihat Semua Berita
-                          // Get.to(()=>CategoryPageWithAppBar(idKategori:"terkini" ));
-                          // GOTO CATEGORY PAGE BERITA TERKINI
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             const CategoryPageWithAppBar(
-                          //               categoryTerkini: "terkini",
-                          //             )));
+                          Get.to(() => const CategoryPageWithAppBar(
+                              categoryTerkini: "terkini"));
                         },
                         child: Text(
                           "LIHAT SEMUA",
@@ -319,14 +305,8 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
               children: data.map((e) {
                 return NewsCard(
                   categoryOnTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) =>
-                    //             CategoryPageWithAppBar(
-                    //               idKategori:
-                    //                   e.idKategori!.toInt(),
-                    //             )));
+                    Get.to(() => CategoryPageWithAppBar(
+                        idKategori: e.idKategori!.toInt()));
                   },
                   onTap: () {
                     // NOTE : GO TO DETAIL PAGE

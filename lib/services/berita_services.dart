@@ -2,10 +2,11 @@ part of 'services.dart';
 
 class BeritaServices {
   // NOTE: GET DATA HEADLINE
-  Future<List<BeritaModel>> getBerita(String value) async {
+  static getBerita({String? value, int page = 1}) async {
     var result = await http.get(Uri.parse(ApiDb.berita + value.toString()));
     if (result.statusCode == 200) {
       var data = jsonDecode(result.body);
+      BeritaModel.currentPage = data['halaman'];
       List<BeritaModel> beritaModel = (data['data'] as Iterable)
           .map((e) => BeritaModel.fromJson(e))
           .toList();
@@ -36,5 +37,20 @@ class BeritaServices {
       print(e);
     }
     return beritaModel;
+  }
+
+  static getVideo({int page = 1}) async {
+    var result =
+        await http.get(Uri.parse(ApiDb.videoLink + "/${page.toString()}}"));
+    if (result.statusCode == 200) {
+      var data = jsonDecode(result.body);
+      BeritaModel.currentPage = data['halaman'];
+      List<VideoModel> videoModel = (data['data'] as Iterable)
+          .map((e) => VideoModel.fromJson(e))
+          .toList();
+      return videoModel;
+    } else {
+      return <VideoModel>[];
+    }
   }
 }

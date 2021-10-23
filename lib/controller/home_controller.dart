@@ -4,7 +4,6 @@ class HomeController extends GetxController {
   List<BeritaModel> getBerita = [];
   List<KategoriModel> getKategori = [];
 
-
   List<BeritaModel> get headline => getBerita.obs;
 
   List<KategoriModel> get kategori => getKategori.obs;
@@ -17,7 +16,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    callBerita('headline');
+    // callBerita('headline');
     callKategori();
   }
 
@@ -27,20 +26,20 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  callBerita(String value) async {
-    try {
-      postloading.value = true;
-      var result = await beritaServices.getBerita(value);
-      if (result != null) {
-        getBerita.assignAll(result);
-      } else {
-        print("Data kosong");
-      }
-    } finally {
-      postloading.value = false;
-    }
-    update();
-  }
+  // callBerita(String value) async {
+  //   try {
+  //     postloading.value = true;
+  //     var result = await beritaServices.getBerita(value);
+  //     if (result != null) {
+  //       getBerita.assignAll(result);
+  //     } else {
+  //       print("Data kosong");
+  //     }
+  //   } finally {
+  //     postloading.value = false;
+  //   }
+  //   update();
+  // }
 
   callKategori() async {
     try {
