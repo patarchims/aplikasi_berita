@@ -15,8 +15,15 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    potraidScreen();
     selectedIndex = 0;
     pageController = PageController(initialPage: selectedIndex);
+  }
+
+  void potraidScreen() {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   }
 
   @override

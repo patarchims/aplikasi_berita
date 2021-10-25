@@ -26,21 +26,6 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-  // callBerita(String value) async {
-  //   try {
-  //     postloading.value = true;
-  //     var result = await beritaServices.getBerita(value);
-  //     if (result != null) {
-  //       getBerita.assignAll(result);
-  //     } else {
-  //       print("Data kosong");
-  //     }
-  //   } finally {
-  //     postloading.value = false;
-  //   }
-  //   update();
-  // }
-
   callKategori() async {
     try {
       postloading.value = true;

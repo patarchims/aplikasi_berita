@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 part 'home_page.dart';
 part 'second_page.dart';
@@ -29,3 +29,4 @@ part 'category_page.dart';
 part 'by_category_page.dart';
 part 'category_page_with_appbar.dart';
 part 'youtube_video.dart';
+part 'splash_page.dart';

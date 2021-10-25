@@ -7,6 +7,10 @@ class AppPages {
         // binding: Binding(),
         page: () => const HomePage()),
     GetPage(
-        name: RouteNames.categoryPageAppBar,   page: () => const DetailPage()),
+        name: RouteNames.categoryPageAppBar, page: () => const DetailPage()),
+    GetPage(
+        name: RouteNames.splashPage,
+        page: () => const SplashPage(),
+        binding: SplashBinding())
   ];
 }
