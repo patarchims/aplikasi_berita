@@ -45,6 +45,7 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
         getData();
       }
     });
+    AppServices.checkVersionApp(context);
   }
 
   @override

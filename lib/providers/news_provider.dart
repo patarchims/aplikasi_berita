@@ -1,17 +1,31 @@
 part of 'providers.dart';
 
 class NewsProvider extends ChangeNotifier {
-  getBerita(String value) async {
-    var result = await http.get(Uri.parse(ApiDb.berita + value));
-    if (result.statusCode == 200) {
-      var data = jsonDecode(result.body);
-      BeritaModel.currentPage = data['halaman'];
-      List<BeritaModel> beritaModel = (data['data'] as Iterable)
-          .map((e) => BeritaModel.fromJson(e))
-          .toList();
-      return beritaModel;
-    } else {
-      return <BeritaModel>[];
+  getBerita(String value, BuildContext context) async {
+    try {
+      var result = await http.get(Uri.parse(ApiDb.berita + value));
+      if (result.statusCode == 200) {
+        var data = jsonDecode(result.body);
+        BeritaModel.currentPage = data['halaman'];
+        List<BeritaModel> beritaModel = (data['data'] as Iterable)
+            .map((e) => BeritaModel.fromJson(e))
+            .toList();
+        return beritaModel;
+      } else {
+        return <BeritaModel>[];
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Awesome Snackbar!'),
+          action: SnackBarAction(
+            label: 'Action',
+            onPressed: () {
+              // Code to execute.
+            },
+          ),
+        ),
+      );
     }
   }
 

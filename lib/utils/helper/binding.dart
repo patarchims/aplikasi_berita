@@ -1,4 +1,4 @@
-import 'package:berita_app/controller/controller.dart';
+import 'package:berita_app/utils/controller/controller.dart';
 import 'package:get/get.dart';
 
 class Binding extends Bindings {

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:berita_app/models/models.dart';
-import 'package:berita_app/services/services.dart';
+import 'package:berita_app/utils/services/services.dart';
 import 'package:berita_app/view/control_view.dart';
 import 'package:get/get.dart';
 import 'package:connectivity/connectivity.dart';

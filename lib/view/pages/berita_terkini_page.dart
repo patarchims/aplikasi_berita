@@ -12,6 +12,12 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
   final CarouselController _carouselController = CarouselController();
 
   @override
+  void initState() {
+    super.initState();
+    AppServices.checkVersionApp(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     var newsProvider = Provider.of<NewsProvider>(context);
 
@@ -25,7 +31,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
             ),
             // NOTE: TAMPILKAN SLIDER BERITA HEADLINE
             FutureBuilder(
-                future: newsProvider.getBerita('headline'),
+                future: newsProvider.getBerita('headline', context),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     List<BeritaModel> data = snapshot.data;
@@ -171,7 +177,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   // Note : BERITA DAERAH :
 
                   FutureBuilder(
-                      future: newsProvider.getBerita('1'),
+                      future: newsProvider.getBerita('1', context),
                       builder: (context, AsyncSnapshot snapshot) {
                         if (snapshot.data != null) {
                           List<BeritaModel> data = snapshot.data;
@@ -296,7 +302,7 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
   FutureBuilder<dynamic> listCategory(
       NewsProvider newsProvider, String idBerita) {
     return FutureBuilder(
-        future: newsProvider.getBerita(idBerita.toString()),
+        future: newsProvider.getBerita(idBerita.toString(), context),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data != null) {
             List<BeritaModel> data = snapshot.data;

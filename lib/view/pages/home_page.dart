@@ -11,6 +11,7 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   late PageController pageController;
   ScrollController listController = ScrollController();
+  ItemScrollController scrollController = ItemScrollController();
 
   @override
   void initState() {
@@ -73,59 +74,99 @@ class _HomePageState extends State<HomePage> {
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.data != null) {
                             List<KategoriModel> data = snapshot.data;
+                            // JIKA DATA DITEMUKAN
+
                             return SizedBox(
-                              height: 35,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                primary: false,
-                                controller: listController,
-                                physics: const ScrollPhysics(
-                                    parent: BouncingScrollPhysics()),
-                                children: data
-                                    .map((e) => Padding(
-                                          padding: EdgeInsets.only(
-                                              right: (e == data.last) ? 0 : 24),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  setState(() {
-                                                    selectedIndex =
-                                                        data.indexOf(e);
-                                                    pageController.jumpToPage(
-                                                        data.indexOf(e));
-                                                  });
-                                                },
-                                                child: SizedBox(
-                                                  height: 30,
-                                                  child: Text(
-                                                    e.nama.toString(),
-                                                    style: (data.indexOf(e) ==
-                                                            selectedIndex)
-                                                        ? blackTextStyle
-                                                            .copyWith(
-                                                                color:
-                                                                    blueColor,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500)
-                                                        : greyTextStyle.copyWith(
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ))
-                                    .toList(),
-                              ),
+                              height: 45,
+                              child: ScrollablePositionedList.builder(
+                                  itemScrollController: scrollController,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: data.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(
+                                          // ignore: unrelated_type_equality_checks
+                                          right: (index == data.last) ? 0 : 24),
+                                      child: TextButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            selectedIndex = index;
+                                            pageController.jumpToPage(index);
+                                          });
+                                        },
+                                        child: SizedBox(
+                                            height: 30,
+                                            child: Text(
+                                              data[index].nama.toString(),
+                                              style: (index == selectedIndex)
+                                                  ? blackTextStyle.copyWith(
+                                                      color: blueColor,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w500)
+                                                  : greyTextStyle.copyWith(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                            )),
+                                      ),
+                                    );
+                                  }),
                             );
+
+                            // return SizedBox(
+                            //   height: 35,
+                            //   child: ListView(
+                            //     scrollDirection: Axis.horizontal,
+                            //     primary: false,
+                            //     controller: listController,
+                            //     physics: const ScrollPhysics(
+                            //         parent: BouncingScrollPhysics()),
+                            //     children: data
+                            //         .map((e) => Padding(
+                            //               padding: EdgeInsets.only(
+                            //                   right: (e == data.last) ? 0 : 24),
+                            //               child: Column(
+                            //                 mainAxisAlignment:
+                            //                     MainAxisAlignment.end,
+                            //                 children: [
+                            //                   InkWell(
+                            //                     onTap: () {
+                            //                       setState(() {
+                            //                         selectedIndex =
+                            //                             data.indexOf(e);
+                            //                         pageController.jumpToPage(
+                            //                             data.indexOf(e));
+                            //                       });
+                            //                     },
+                            //                     child: SizedBox(
+                            //                       height: 30,
+                            //                       child: Text(
+                            //                         e.nama.toString(),
+                            //                         style: (data.indexOf(e) ==
+                            //                                 selectedIndex)
+                            //                             ? blackTextStyle
+                            //                                 .copyWith(
+                            //                                     color:
+                            //                                         blueColor,
+                            //                                     fontSize: 18,
+                            //                                     fontWeight:
+                            //                                         FontWeight
+                            //                                             .w500)
+                            //                             : greyTextStyle.copyWith(
+                            //                                 fontSize: 18,
+                            //                                 fontWeight:
+                            //                                     FontWeight
+                            //                                         .normal),
+                            //                       ),
+                            //                     ),
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             ))
+                            //         .toList(),
+                            //   ),
+                            // );
                           } else if (snapshot.hasError) {
                             return Container(
                               alignment: Alignment.center,
@@ -167,7 +208,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: SafeArea(
-          
           bottom: false,
           child: FutureBuilder(
               future: newsProvider.getKategoriBerita(),
@@ -179,6 +219,10 @@ class _HomePageState extends State<HomePage> {
                     onPageChanged: (index) {
                       setState(() {
                         selectedIndex = index;
+                        scrollController.scrollTo(
+                            index: index,
+                            duration: const Duration(milliseconds: 150),
+                            alignment: 0.4);
                       });
                     },
                     children: data.map((e) {

@@ -1,8 +1,8 @@
 import 'package:berita_app/api/api_db.dart';
-import 'package:berita_app/helper/theme.dart';
+import 'package:berita_app/utils/helper/theme.dart';
 import 'package:berita_app/models/models.dart';
 import 'package:berita_app/providers/providers.dart';
-import 'package:berita_app/services/services.dart';
+import 'package:berita_app/utils/services/services.dart';
 import 'package:berita_app/view/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 part 'home_page.dart';
 part 'nointernet_connection_page.dart';

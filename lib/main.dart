@@ -1,7 +1,7 @@
-import 'package:berita_app/helper/binding.dart';
-import 'package:berita_app/helper/color_palette.dart';
+import 'package:berita_app/utils/helper/binding.dart';
+import 'package:berita_app/utils/helper/color_palette.dart';
 import 'package:berita_app/providers/providers.dart';
-import 'package:berita_app/routes/routes.dart';
+import 'package:berita_app/utils/routes/routes.dart';
 import 'package:berita_app/view/control_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
