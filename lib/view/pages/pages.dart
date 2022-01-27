@@ -17,9 +17,6 @@ import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 part 'home_page.dart';
-part 'second_page.dart';
-part 'three_page.dart';
-part 'four_page.dart';
 part 'nointernet_connection_page.dart';
 part 'berita_terkini_page.dart';
 part 'redaksi_page.dart';

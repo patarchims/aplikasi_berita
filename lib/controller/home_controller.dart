@@ -30,9 +30,11 @@ class HomeController extends GetxController {
     try {
       postloading.value = true;
       var result = await KategoriServices.getKategori();
+      // ignore: unnecessary_null_comparison
       if (result != null) {
         getKategori.addAll(result);
       } else {
+        // ignore: avoid_print
         print("Data kosong");
       }
     } finally {

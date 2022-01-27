@@ -63,11 +63,6 @@ class _VideoPageState extends State<VideoPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-              margin: const EdgeInsets.only(top: 21, bottom: 14),
-              child: Text("VIDEO BERITA",
-                  style: blueTextStyle, textAlign: TextAlign.left)),
-
           // NOTE : TAMPILKAN VIDEO LIST
           Expanded(child: LayoutBuilder(
             builder: (context, constraints) {
@@ -84,6 +79,15 @@ class _VideoPageState extends State<VideoPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // NOTE : COLUMN
+                                (videoModel.first == videoModel[index])
+                                    ? Container(
+                                        margin: const EdgeInsets.only(
+                                            top: 21, bottom: 14),
+                                        child: Text("VIDEO BERITA",
+                                            style: blueTextStyle,
+                                            textAlign: TextAlign.left))
+                                    : Container(),
+
                                 SizedBox(
                                     child: Column(
                                   children: [

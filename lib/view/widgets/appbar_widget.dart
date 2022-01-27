@@ -6,33 +6,45 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: Row(
-      children: [
-        // LOGO :
-        Expanded(
-            child: Image.asset(
-          imagesAssets + 'logo_header.png',
-          fit: BoxFit.cover,
-        )),
-        const SizedBox(
-          width: 20,
-        ),
-        ClipOval(
-          child: Container(
+        actions: [
+          MaterialButton(
+            onPressed: () {},
             color: blueColor,
-            width: 35,
-            height: 35,
-            child: Center(
-              child: IconButton(
-                iconSize: 30,
-                color: whiteColor,
-                onPressed: () {},
-                icon: const Icon(Icons.search, size: 23),
-              ),
+            textColor: Colors.white,
+            child: const Icon(
+              Icons.search,
+              size: 24,
             ),
+            shape: const CircleBorder(),
           ),
-        )
-      ],
-    ));
+        ],
+        title: Row(
+          children: [
+            // LOGO :
+            Expanded(
+                child: Image.asset(
+              imagesAssets + 'logo_header.png',
+              fit: BoxFit.cover,
+            )),
+            const SizedBox(
+              width: 20,
+            ),
+            ClipOval(
+              child: Container(
+                color: blueColor,
+                width: 35,
+                height: 35,
+                child: Center(
+                  child: IconButton(
+                    iconSize: 30,
+                    color: whiteColor,
+                    onPressed: () {},
+                    icon: const Icon(Icons.search, size: 23),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

@@ -66,33 +66,31 @@ class HeaderWidget extends StatelessWidget {
                     height: 35,
                     child: Center(
                       child: IconButton(
-                        iconSize: 30,
                         color: whiteColor,
                         onPressed: () {
                           if (buttonSearch != null) {
                             buttonSearch!();
                           }
                         },
-                        icon: const Icon(Icons.search, size: 23),
+                        icon: const Icon(Icons.search, size: 20),
                       ),
                     ),
                   ),
                 )
               : ClipOval(
                   child: Container(
-                    color: blueColor,
-                    width: 35,
                     height: 35,
+                    width: 35,
+                    color: blueColor,
                     child: Center(
                       child: IconButton(
-                        iconSize: 30,
                         color: whiteColor,
                         onPressed: () {
                           if (buttonShare != null) {
                             buttonShare!();
                           }
                         },
-                        icon: const Icon(Icons.share, size: 23),
+                        icon: const Icon(Icons.share, size: 20),
                       ),
                     ),
                   ),

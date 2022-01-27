@@ -66,7 +66,6 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                                   });
                                 })),
 
-                        // NOTE : SEMUA ARTIKEL
                         Container(
                           padding: const EdgeInsets.only(
                               bottom: 6, left: 6, right: 6, top: 9),

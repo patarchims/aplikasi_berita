@@ -1,7 +1,6 @@
 part of 'providers.dart';
 
 class NewsProvider extends ChangeNotifier {
-  // final ApiClient _client = ApiClient();
   getBerita(String value) async {
     var result = await http.get(Uri.parse(ApiDb.berita + value));
     if (result.statusCode == 200) {
@@ -34,7 +33,6 @@ class NewsProvider extends ChangeNotifier {
         Uri.parse(ApiDb.kategori + valueId.toString() + "/${page.toString()}"));
     if (result.statusCode == 200) {
       var data = jsonDecode(result.body);
-      print("Get Data");
       BeritaModel.currentPage = data['halaman'];
       List<BeritaModel> beritaModel = (data['data'] as Iterable)
           .map((e) => BeritaModel.fromJson(e))
