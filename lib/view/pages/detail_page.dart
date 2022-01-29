@@ -50,6 +50,10 @@ class _DetailPageState extends State<DetailPage> {
               height: 2,
             ),
             Container(
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              child: const BannerAd(size: BannerSize.ADAPTIVE),
+            ),
+            Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
               child: (widget.beritaModel!.judul != null)
                   ? Text(widget.beritaModel!.judul.toString(),
@@ -92,6 +96,11 @@ class _DetailPageState extends State<DetailPage> {
 
             const SizedBox(
               height: 16,
+            ),
+
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              child: const BannerAd(size: BannerSize.ADAPTIVE),
             ),
 
             // NOTE: BERITA TERKAIT

@@ -107,7 +107,12 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                                   }).toList()),
                             ],
                           ),
-                        )
+                        ),
+
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        const BannerAd(size: BannerSize.ADAPTIVE),
                       ],
                     );
                   } else if (snapshot.hasError) {
@@ -149,7 +154,10 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
                   ),
 
                   // Note : BERITA TERKINI :
+
                   listCategory(newsProvider, 'terkini'),
+                  const SizedBox(height: 12),
+                  const BannerAd(size: BannerSize.ADAPTIVE),
                 ],
               ),
             ),
@@ -263,6 +271,8 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
 
                   // Note : BERITA GAMPONG :
                   listCategory(newsProvider, '2'),
+                  const SizedBox(height: 12),
+                  const BannerAd(size: BannerSize.ADAPTIVE),
                 ],
               ),
             ),
@@ -287,6 +297,8 @@ class _BeritaTerkiniPageState extends State<BeritaTerkiniPage> {
 
                   // Note : BERITA NASIONAL :
                   listCategory(newsProvider, '3'),
+                  const SizedBox(height: 12),
+                  const BannerAd(size: BannerSize.ADAPTIVE),
                 ],
               ),
             ),

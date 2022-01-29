@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     FutureBuilder(
-                        future: newsProvider.getKategoriBerita(),
+                        future: newsProvider.getKategoriBerita(this.context),
                         builder: (context, AsyncSnapshot snapshot) {
                           if (snapshot.data != null) {
                             List<KategoriModel> data = snapshot.data;
@@ -113,60 +113,6 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   }),
                             );
-
-                            // return SizedBox(
-                            //   height: 35,
-                            //   child: ListView(
-                            //     scrollDirection: Axis.horizontal,
-                            //     primary: false,
-                            //     controller: listController,
-                            //     physics: const ScrollPhysics(
-                            //         parent: BouncingScrollPhysics()),
-                            //     children: data
-                            //         .map((e) => Padding(
-                            //               padding: EdgeInsets.only(
-                            //                   right: (e == data.last) ? 0 : 24),
-                            //               child: Column(
-                            //                 mainAxisAlignment:
-                            //                     MainAxisAlignment.end,
-                            //                 children: [
-                            //                   InkWell(
-                            //                     onTap: () {
-                            //                       setState(() {
-                            //                         selectedIndex =
-                            //                             data.indexOf(e);
-                            //                         pageController.jumpToPage(
-                            //                             data.indexOf(e));
-                            //                       });
-                            //                     },
-                            //                     child: SizedBox(
-                            //                       height: 30,
-                            //                       child: Text(
-                            //                         e.nama.toString(),
-                            //                         style: (data.indexOf(e) ==
-                            //                                 selectedIndex)
-                            //                             ? blackTextStyle
-                            //                                 .copyWith(
-                            //                                     color:
-                            //                                         blueColor,
-                            //                                     fontSize: 18,
-                            //                                     fontWeight:
-                            //                                         FontWeight
-                            //                                             .w500)
-                            //                             : greyTextStyle.copyWith(
-                            //                                 fontSize: 18,
-                            //                                 fontWeight:
-                            //                                     FontWeight
-                            //                                         .normal),
-                            //                       ),
-                            //                     ),
-                            //                   ),
-                            //                 ],
-                            //               ),
-                            //             ))
-                            //         .toList(),
-                            //   ),
-                            // );
                           } else if (snapshot.hasError) {
                             return Container(
                               alignment: Alignment.center,
@@ -210,7 +156,7 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
           bottom: false,
           child: FutureBuilder(
-              future: newsProvider.getKategoriBerita(),
+              future: newsProvider.getKategoriBerita(this.context),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data != null) {
                   List<KategoriModel> data = snapshot.data;

@@ -33,7 +33,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
               Expanded(
                 child: FutureBuilder(
-                    future: newsProvider.getKategoriBerita(),
+                    future: newsProvider.getKategoriBerita(this.context),
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.data != null) {
                         List<KategoriModel> data = snapshot.data;

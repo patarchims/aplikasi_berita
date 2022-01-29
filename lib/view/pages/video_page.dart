@@ -72,7 +72,103 @@ class _VideoPageState extends State<VideoPage> {
                     ListView.separated(
                         controller: scrollController,
                         itemBuilder: (context, index) {
-                          if (index < videoModel.length) {
+                          if (index % 5 == 0) {
+                            return SizedBox(
+                                child: Column(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // NOTE : COLUMN
+                                    (videoModel.first == videoModel[index])
+                                        ? Container(
+                                            margin: const EdgeInsets.only(
+                                                top: 21, bottom: 14),
+                                            child: Text("VIDEO BERITA",
+                                                style: blueTextStyle,
+                                                textAlign: TextAlign.left))
+                                        : Container(),
+
+                                    SizedBox(
+                                        child: Column(
+                                      children: [
+                                        Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              ChaceImage(
+                                                imageUrl: videoModel[index]
+                                                    .image
+                                                    .toString(),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    2.4,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                              ),
+                                              Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      2.4,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  color: const Color(0xFFFFFFFF)
+                                                      .withOpacity(0.48)),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    shape: const CircleBorder(),
+                                                    primary: redColor),
+                                                child: Container(
+                                                  padding:
+                                                      const EdgeInsets.all(20),
+                                                  child: FaIcon(
+                                                      FontAwesomeIcons.play,
+                                                      color: blackColor,
+                                                      size: 42),
+                                                ),
+                                                onPressed: () {
+                                                  // NOTE : GOTO VIDEO PLAY
+                                                  Get.to(() => YouTubeVideoPage(
+                                                        name: videoModel[index]
+                                                            .judul
+                                                            .toString(),
+                                                        urlVideo:
+                                                            videoModel[index]
+                                                                .videKode
+                                                                .toString(),
+                                                      ));
+                                                },
+                                              ),
+                                            ]),
+                                        Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 24, vertical: 6),
+                                            child: Text(
+                                              videoModel[index]
+                                                  .judul
+                                                  .toString(),
+                                              style: blackTextStyle.copyWith(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                              overflow: TextOverflow.clip,
+                                              maxLines: 3,
+                                              textAlign: TextAlign.left,
+                                            ))
+                                      ],
+                                    )),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                const BannerAd(size: BannerSize.ADAPTIVE)
+                              ],
+                            ));
+                          } else if (index < videoModel.length) {
                             // TAMPILKAN LIST DARI VIDEO
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.start,

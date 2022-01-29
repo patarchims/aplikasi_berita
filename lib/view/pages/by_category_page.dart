@@ -43,6 +43,7 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
               scrollController.position.maxScrollExtent &&
           !loading) {
         getData();
+        // BannerAd(size: BannerSize.ADAPTIVE);
       }
     });
     AppServices.checkVersionApp(context);
@@ -62,25 +63,70 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
           if (beritaModel.isNotEmpty) {
             return Stack(
               children: [
+                // const Positioned(
+                //   left: 0,
+                //   bottom: 0,
+                //   child: Center(child: BannerAd(size: BannerSize.ADAPTIVE)),
+                // ),
+
                 ListView.separated(
                     controller: scrollController,
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         return Container(
                           margin: const EdgeInsets.all(8),
-                          child: HeadLineWidget(
-                            onTap: () {
-                              Get.to(() => DetailPage(
-                                    beritaModel: beritaModel[index],
-                                  ));
-                            },
-                            imageURL: beritaModel[index].gambar.toString(),
-                            badgeColor: Colors.amber,
-                            category: beritaModel[index].kategori,
-                            dateTime: beritaModel[index].tanggal.toString(),
-                            title: beritaModel[index].judul,
+                          child: Column(
+                            children: [
+                              HeadLineWidget(
+                                onTap: () {
+                                  Get.to(() => DetailPage(
+                                        beritaModel: beritaModel[index],
+                                      ));
+                                },
+                                imageURL: beritaModel[index].gambar.toString(),
+                                badgeColor: Colors.amber,
+                                category: beritaModel[index].kategori,
+                                dateTime: beritaModel[index].tanggal.toString(),
+                                title: beritaModel[index].judul,
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              const BannerAd(size: BannerSize.ADAPTIVE),
+                            ],
                           ),
                         );
+                      } else if (index % 5 == 0) {
+                        return SizedBox(
+                            child: Column(
+                          children: [
+                            Container(
+                              color: whiteColor,
+                              padding: EdgeInsets.only(
+                                  left: 6,
+                                  right: 6,
+                                  bottom:
+                                      (beritaModel.last == beritaModel[index])
+                                          ? 50
+                                          : 0),
+                              child: NewsCard(
+                                onTap: () {
+                                  Get.to(() => DetailPage(
+                                      beritaModel: beritaModel[index]));
+                                },
+                                categoryOnTap: () {},
+                                category: beritaModel[index].kategori,
+                                date: beritaModel[index].tanggal.toString(),
+                                imageUrl: beritaModel[index].gambar.toString(),
+                                title: beritaModel[index].judul,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            const BannerAd(size: BannerSize.ADAPTIVE)
+                          ],
+                        ));
                       } else if (index < beritaModel.length) {
                         return Container(
                           color: whiteColor,
@@ -131,7 +177,14 @@ class _ByCategoryPageState extends State<ByCategoryPage> {
                           color: blueColor,
                         )),
                       ))
-                ]
+                ],
+                // if (loading = false) ...[
+                //  const  Positioned(
+                //     left: 0,
+                //     bottom: 0,
+                //     child: Center(child: BannerAd(size: BannerSize.ADAPTIVE)),
+                //   )
+                // ]
               ],
             );
           } else {

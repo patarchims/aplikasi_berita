@@ -17,9 +17,9 @@ class NewsProvider extends ChangeNotifier {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Awesome Snackbar!'),
+          content: Text(Error.safeToString(e)),
           action: SnackBarAction(
-            label: 'Action',
+            label: '',
             onPressed: () {
               // Code to execute.
             },
@@ -29,16 +29,30 @@ class NewsProvider extends ChangeNotifier {
     }
   }
 
-  getKategoriBerita() async {
-    var result = await http.get(Uri.parse(ApiDb.kategori));
-    if (result.statusCode == 200) {
-      var data = jsonDecode(result.body);
-      List<KategoriModel> beritaModel = (data['data'] as Iterable)
-          .map((e) => KategoriModel.fromJson(e))
-          .toList();
-      return beritaModel;
-    } else {
-      return <KategoriModel>[];
+  getKategoriBerita(BuildContext context) async {
+    try {
+      var result = await http.get(Uri.parse(ApiDb.kategori));
+      if (result.statusCode == 200) {
+        var data = jsonDecode(result.body);
+        List<KategoriModel> beritaModel = (data['data'] as Iterable)
+            .map((e) => KategoriModel.fromJson(e))
+            .toList();
+        return beritaModel;
+      } else {
+        return <KategoriModel>[];
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(Error.safeToString(e)),
+          action: SnackBarAction(
+            label: '',
+            onPressed: () {
+              // Code to execute.
+            },
+          ),
+        ),
+      );
     }
   }
 
