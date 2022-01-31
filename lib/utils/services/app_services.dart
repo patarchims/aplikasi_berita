@@ -10,14 +10,12 @@ class AppServices {
         newVersion.showUpdateDialog(
           context: context,
           versionStatus: status,
-          dialogTitle: 'Update',
-          dialogText:
-              'Update aplikasi dari ${status.localVersion} ke ${status.storeVersion}',
+          dialogTitle: 'Gampong News',
           dismissAction: () {
             SystemNavigator.pop();
           },
-          dismissButtonText: 'Lewati',
-          updateButtonText: "Update Sekarang",
+          dismissButtonText: 'NANTI',
+          updateButtonText: "UPDATE SEKARANG",
         );
       }
     }

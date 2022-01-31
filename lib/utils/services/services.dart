@@ -6,7 +6,7 @@ import 'package:berita_app/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
-import 'package:new_version/new_version.dart';
+import 'package:berita_app/utils/library/version_app.dart';
 
 part 'berita_services.dart';
 part 'kategori_services.dart';

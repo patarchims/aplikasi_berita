@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
     potraidScreen();
     selectedIndex = 0;
     pageController = PageController(initialPage: selectedIndex);
+    AppServices.checkVersionApp(context);
   }
 
   void potraidScreen() {
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                             // JIKA DATA DITEMUKAN
 
                             return SizedBox(
-                              height: 45,
+                              height: 40,
                               child: ScrollablePositionedList.builder(
                                   itemScrollController: scrollController,
                                   scrollDirection: Axis.horizontal,
