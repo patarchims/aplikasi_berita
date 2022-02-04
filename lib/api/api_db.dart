@@ -1,3 +1,5 @@
+import 'package:berita_app/view/control_view.dart';
+
 class ApiDb {
   // TEMPAT API DISINI
   static const urlShare = "https://liputangampongnews.id/";
@@ -10,4 +12,5 @@ class ApiDb {
   static const redaksi = baseUrl + 'redaksi/';
   static const shareLink = urlShare + "berita/detail/";
   static const videoLink = baseUrl + 'video/';
+  static const ads = baseUrl + 'iklan/';
 }

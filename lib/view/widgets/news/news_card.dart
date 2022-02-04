@@ -1,4 +1,4 @@
-part of 'widgets.dart';
+part of '../widgets.dart';
 
 class NewsCard extends StatelessWidget {
   final Function? onTap;

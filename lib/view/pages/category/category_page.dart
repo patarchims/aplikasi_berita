@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of 'categori.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);

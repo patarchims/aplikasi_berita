@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of 'categori.dart';
 
 class DetailPage extends StatefulWidget {
   // final Function? categoryOnTap;
@@ -31,28 +31,7 @@ class _DetailPageState extends State<DetailPage> {
         child: ListView(
           children: [
             // DETAIL PAGE
-            ChaceImage(
-              imageUrl: widget.beritaModel!.gambar.toString(),
-              height: 215,
-              width: double.infinity,
-            ),
-            const SizedBox(
-              height: 7,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: (widget.beritaModel!.subJudul != null)
-                  ? Text(widget.beritaModel!.subJudul.toString(),
-                      style: greyTextStyle.copyWith(fontSize: 8))
-                  : Text("", style: greyTextStyle.copyWith(fontSize: 8)),
-            ),
-            const SizedBox(
-              height: 2,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 12),
-              child: const BannerAd(size: BannerSize.ADAPTIVE),
-            ),
+
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
               child: (widget.beritaModel!.judul != null)
@@ -61,6 +40,20 @@ class _DetailPageState extends State<DetailPage> {
                           fontSize: 21, fontWeight: FontWeight.bold))
                   : Text("", style: greyTextStyle.copyWith(fontSize: 8)),
             ),
+            const SizedBox(
+              height: 7,
+            ),
+
+            const SizedBox(
+              height: 16,
+            ),
+
+            ChaceImage(
+              imageUrl: widget.beritaModel!.gambar.toString(),
+              height: 215,
+              width: double.infinity,
+            ),
+
             const SizedBox(
               height: 7,
             ),
@@ -78,8 +71,19 @@ class _DetailPageState extends State<DetailPage> {
                 textColor: Colors.black,
               ),
             ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              child: (widget.beritaModel!.subJudul != null)
+                  ? Text(widget.beritaModel!.subJudul.toString(),
+                      style: greyTextStyle.copyWith(fontSize: 8))
+                  : Text("", style: greyTextStyle.copyWith(fontSize: 8)),
+            ),
             const SizedBox(
-              height: 16,
+              height: 2,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              child: const BannerAd(size: BannerSize.ADAPTIVE),
             ),
 
             Container(

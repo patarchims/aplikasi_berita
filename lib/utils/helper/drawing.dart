@@ -30,9 +30,9 @@ class Drawing {
   String _word;
 
   List<Stroke> _strokes;
-  
+
   String get word => _word;
-  
+
   List<Stroke> get strokes => _strokes;
 
   Drawing(this._word, this._strokes);
@@ -59,7 +59,7 @@ class Drawing {
 
 class Stroke {
   late List<Point> _points;
-  
+
   List<Point> get points => _points;
 
   Stroke.fromIterable(Iterable xCoords, Iterable yCoords)
@@ -73,6 +73,6 @@ class Stroke {
     for (int i = 0; i < xCoords.length; i++) {
       pts.add(Point(xCoords[i].toDouble(), yCoords[i].toDouble()));
     }
-    this._points = pts;
+    _points = pts;
   }
 }

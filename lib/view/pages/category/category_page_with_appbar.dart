@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of 'categori.dart';
 
 class CategoryPageWithAppBar extends StatefulWidget {
   final int? idKategori;

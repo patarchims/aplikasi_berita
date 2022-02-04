@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of 'categori.dart';
 
 class ByCategoryPage extends StatefulWidget {
   final int idKategori;

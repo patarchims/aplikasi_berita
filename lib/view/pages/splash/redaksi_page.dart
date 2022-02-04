@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
 class RedaksiPage extends StatelessWidget {
   const RedaksiPage({Key? key}) : super(key: key);

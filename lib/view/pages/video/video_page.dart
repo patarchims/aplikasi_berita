@@ -1,4 +1,12 @@
-part of 'pages.dart';
+import 'package:berita_app/models/models.dart';
+import 'package:berita_app/utils/helper/theme.dart';
+import 'package:berita_app/utils/services/services.dart';
+import 'package:berita_app/view/pages/video/youtube_video.dart';
+import 'package:berita_app/view/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
